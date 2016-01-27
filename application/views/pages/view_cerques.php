@@ -1,11 +1,11 @@
 <!-- PAGINA CERQUES  -->
-<div id="contingut" class="container">
+<div class="container">
 
     <!--<?php //echo anchor('contRegistre/enviar_emailami', 'Enviar-me missatge'); ?>-->
 
     <div class="row" id="cont_div_cerques">
         <!-- edit form column -->
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-1">
             <!-- zona alerts -->
             <?php if (isset($canvis_perfil_correcte)) { ?>
                 <div class="alert alert-info">
@@ -142,8 +142,56 @@
                 </div>
                 </form>
             <?php } ?>
-            <!-- FI formulari de afegir cerca -->
         </div>
+        <!-- FI formulari de afegir cerca -->
+        <div class="col-xs-12" id="taula_cerques">
+            <!-- Mostrar taula amb totes les cerques del usuari -->
+            <h2>Cerques Realitzades</h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Immoble</th>
+                    <th>Provincia</th>
+                    <th>Poblacio</th>
+                    <th>Operacio</th>
+                    <th>m2</th>
+                    <th>Espais</th>
+                    <th>Banys</th>
+                    <th>m2 Ext.</th>
+                    <th>Panta</th>
+                    <th>Orient.</th>
+                    <th>Conservacio</th>
+                    <th>Preu</th>
+                    <th>Comment.</th>
+                    <th>Data</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php for ($i = 0; $i < sizeof($cerques); $i++) { ?>
+                    <tr>
+                        <td><?php echo $cerques[$i]["ref"]; ?></td>
+                        <td><?php echo $cerques[$i]["type_im"]; ?></td>
+                        <td><?php echo $cerques[$i]["provincia"]; ?></td>
+                        <td><?php echo $cerques[$i]["poblacio"]; ?></td>
+                        <td><?php echo $cerques[$i]["operacio"]; ?></td>
+                        <td><?php echo $cerques[$i]["m2"]; ?></td>
+                        <td><?php echo $cerques[$i]["num_espais"]; ?></td>
+                        <td><?php echo $cerques[$i]["num_banys"]; ?></td>
+                        <td><?php echo $cerques[$i]["m2_exterior"]; ?></td>
+                        <td><?php echo $cerques[$i]["planta"]; ?></td>
+                        <td><?php echo $cerques[$i]["orientacio"]; ?></td>
+                        <td><?php echo $cerques[$i]["estat_conservacio"]; ?></td>
+                        <td><?php echo $cerques[$i]["preu"]; ?></td>
+                        <td><?php echo $cerques[$i]["accepta_com"]; ?></td>
+                        <td><?php echo $cerques[$i]["data"]; ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FI Mostrar Taula -->
     </div>
     <!-- /row -->
 </div>

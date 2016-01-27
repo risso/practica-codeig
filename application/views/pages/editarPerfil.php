@@ -1,5 +1,5 @@
 <!-- PAGINA EDITAR PERFIL -->
-<div id="contingut" class="container">
+<div class="container">
 
 
     <!--<?php //echo anchor('contRegistre/enviar_emailami', 'Enviar-me missatge'); ?>-->

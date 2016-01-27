@@ -1,5 +1,5 @@
 <!-- PAGINA PRINCIPAL -->
-<div id="contingut" class="container">
+<div class="container">
 
     <?php if (isset($errores) && $errores == 1) { ?>
         <div class="alert alert-danger" role="alert">
@@ -138,3 +138,4 @@
     <!-- /row -->
 </div>
 <!-- /container -->
+

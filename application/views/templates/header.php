@@ -46,7 +46,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/estil.css"/>
 </head>
-<body>
+<body id="<?php if(isset($index_si)){echo "body_img";}?>" >
 <nav class="navbar navbar-inverse  navbar-fixed-top " role="navigation">
     <div class="container">
         <div class="navbar-header">

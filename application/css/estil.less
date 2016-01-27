@@ -24,25 +24,21 @@ font-family: 'Libre Baskerville', serif;
 //        Paleta de Colors 
 // ========================================================
 @color_marro_groc: #d29b55;
+@gris_fluix: #dbdbdb;
 // ========================================================
 html,
 body {
     height: 100%;
     width: 100%;
     font-family: sans-serif;
-    //definicio background
+    background-color: @gris_fluix;
+}
+#body_img {
     background-image: url(images/Bora_Bora.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-
-/*
-#contingut{
-    margin-top: 100px;
-
-}*/
-
 .error {
     color: red;
     font-size: 13px;
@@ -205,13 +201,27 @@ li .user-footer > a {
     background-position: center;
 }
 //=== ESTIL PAGINA CERQUES ====
-#cont_div_cerques{
+#cont_div_cerques {
     background-color: white;
     border-radius: 20px 20px 20px 20px;
     padding-top: 30px;
     padding-bottom: 30px;
 }
-#titol_cerca{
+#titol_cerca {
     margin-top: 10px;
     font-size: 30px;
+}
+//======= ESTIL PAGINA CERQUES =======
+table th {
+    font-weight: bold;
+}
+table td * {
+    text-align: center;
+}
+#taula_cerques {
+    margin-top: 20px;
+}
+#taula_cerques h2 {
+    font-size: 25px;
+    margin: 20px;
 }

@@ -32,6 +32,20 @@ class CercaModel extends CI_Model
 
     }
 
+    public function getCerques($mail_usu)
+    {
+        $values = array();
+        $values["id_user"] = $mail_usu;
+        $query = $this->db->get_where('cerques', $values);
+
+        $a = array();
+        foreach ($query->result_array() as $arr) {
+            $a[] = $arr;
+        }
+        return $a;
+
+    }
+
 
 }
 

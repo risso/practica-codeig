@@ -12,6 +12,7 @@ class ContIndex extends CI_Controller {
         //$this->load->model("DepartamentModel");
 		$data = array();
 
+		$data['index_si']=true;
         $this->load->view('templates/header',$data);
 		$this->load->view('pages/index');
 		$this->load->view('templates/footer');
