@@ -78,7 +78,7 @@ class ContCerques extends CI_Controller
     public function afegir_cerca(){
 
         $data=array();
-        //agafar dades del formulari i guardar,, en total 9 camps per guardar
+        //agafar dades del formulari i guardar,, en total 13 camps per guardar
 
         $data[0] = $this->session->userdata('mail'); //agafem valor mail de la session
         $data[1] = $this->input->post("input_imm");
@@ -90,8 +90,14 @@ class ContCerques extends CI_Controller
         $data[7] = $this->input->post("input_num_banys");
         $data[8] = $this->input->post("input_m2_exterior");
         $data[9] = $this->input->post("input_planta");
+        $data[10] = $this->input->post("input_radio_orientacio");
+        $data[11] = $this->input->post("input_conservacio");
+        $data[12] = $this->input->post("input_preu");
+        $data[13] = $this->input->post("input_accept_comentari");
 
         $res = $this->CercaModel->afegir_cerca_bd($data);
+
+        redirect('ContCerques/index');
 
     }
 

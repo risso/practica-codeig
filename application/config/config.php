@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$config['base_url'] = 'http://localhost/ProvaEmpleats/index.php';
 //Carlos dice quitar index.php del base_url --> PERO ENTONCES NO FUNCIONA NADA, NI BASE_URL NI SITE_URL AL LLAMAR AL CONTROLADOR 
 // SITE_URL I BASE_URL TIENEN SIEMPRE EL MISMO VALOR
-$config['base_url'] = 'http://localhost/Practica_Codeigniter/index.php';
+$config['base_url'] = 'http://localhost/practica-codeig/index.php';
 //Utilitzar --> site_url() -->
 
 

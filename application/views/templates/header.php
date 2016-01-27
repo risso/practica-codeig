@@ -8,17 +8,17 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet"
-          href="http://localhost/Practica_Codeigniter/application/css/bootstrap/css/bootstrap.min.css"/>
+          href="http://localhost/practica-codeig/application/css/bootstrap/css/bootstrap.min.css"/>
 
     <!-- Optional theme -->
     <link rel="stylesheet"
-          href="http://localhost/Practica_Codeigniter/application/css/bootstrap/css/bootstrap-theme.min.css"/>
+          href="http://localhost/practica-codeig/application/css/bootstrap/css/bootstrap-theme.min.css"/>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <link rel="stylesheet" href="http://localhost/Practica_Codeigniter/application/css/bootstrap/js/bootstrap.min.js"/>
+    <link rel="stylesheet" href="http://localhost/practica-codeig/application/css/bootstrap/js/bootstrap.min.js"/>
 
     <!-- Fonts Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -37,14 +37,14 @@
             crossorigin="anonymous"></script>
 
     <!-- Per utilitzar media-querys -->
-    <script src="http://localhost/Practica_Codeigniter/application/css/jQuery/jquery.js"
+    <script src="http://localhost/practica-codeig/application/css/jQuery/jquery.js"
             type="text/javascript"></script>
-    <script src="http://localhost/Practica_Codeigniter/application/css/jQuery/login_form.js"
+    <script src="http://localhost/practica-codeig/application/css/jQuery/login_form.js"
             type="text/javascript"></script>
 
     <!-- La nostra fulla d'estil -->
-    <link rel="stylesheet" type="text/css" href="http://localhost/Practica_Codeigniter/application/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="http://localhost/Practica_Codeigniter/application/css/estil.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/estil.css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse  navbar-fixed-top " role="navigation">
@@ -74,9 +74,9 @@
                         $nom = $this->session->userdata('nick');
                         if ($this->session->userdata('avatar') == "") {
                             //$src = './application/avatars/user_default.png';
-                            $src = 'http://localhost/Practica_Codeigniter/application/avatars/user_default.png';
+                            $src = 'http://localhost/practica-codeig/application/avatars/user_default.png';
                         } else {
-                            $src = 'http://localhost/Practica_Codeigniter/application/avatars/' . $this->session->userdata('mail') . '/' . $this->session->userdata('avatar');
+                            $src = 'http://localhost/practica-codeig/application/avatars/' . $this->session->userdata('mail') . '/' . $this->session->userdata('avatar');
                         } ?>
                         <img src="<?php echo($src); ?>" class="user-image" alt="Image">
                         <span class="hidden-xs"><?php echo($nom); ?></span>

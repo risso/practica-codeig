@@ -5,25 +5,24 @@
 
     <div class="row" id="cont_div_cerques">
         <!-- edit form column -->
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-2">
             <!-- zona alerts -->
             <?php if (isset($canvis_perfil_correcte)) { ?>
-                <div class="alert alert-info alert-dismissable">
-                    <a class="panel-close close" data-dismiss="alert">×</a>
+                <div class="alert alert-info">
                     <i class="fa fa-hand-peace-o"></i>
                     Canvis Guardats Correctament.
                 </div>
             <?php } ?>
             <!-- fi zona alerts -->
             <!-- Boto per mostrar formulari per afegir cerca -->
-            <?php if (isset($mostrar_form)) {
-                $attr = 'disabled';
-            } else {
-                $attr = 'enabled';
-            } ?>
-            <a href="<?php echo(site_url("ContCerques/mostrar_form/")); ?>" class="btn btn-primary">Afegir Cerca</a>
 
-            <?php if (isset($mostrar_form) && $mostrar_form == true) { //($mostrar_form);?>
+            <a href="<?php echo(site_url("ContCerques/mostrar_form/")); ?>" class="btn btn-primary"
+                <?php if (isset($mostrar_form)) {
+                    echo 'disabled';
+                } ?>
+            >Afegir Cerca</a>
+
+            <?php if (isset($mostrar_form) && $mostrar_form == true) { ?>
 
                 <!-- formulari de afegir cerca -->
                 <?php $attributes = array('id' => 'cerca-formulari', 'role' => 'form', 'class' => 'form-horizontal');
@@ -93,15 +92,47 @@
                     ?>
                 </div>
                 <div class="form-group">
-                    <label for="input_radio_orientacio">Orientacio:</label>
-                    <?php $atrib = array('id' => 'input_radio_orientacio', 'class' => 'radio-inline','value'=> ''); ?>
-                    echo form_dropdown('input_radio_orientacio', $options, $atrib);
-                    <?php echo form_checkbox('newsletter',$atrib); ?>
+                    <p>Orientacio:</p>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_radio_orientacio" value="Nord">Nord
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_radio_orientacio" value="Sud">Sud
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_radio_orientacio" value="Est">Est
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_radio_orientacio" value="Oest">Oest
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="input_planta">Estat Conservacio:</label>
+                    <?php $options = array(
+                        'Nou' => 'Nou',
+                        'Bo' => 'Bo',
+                        'Regular' => 'Regular',
+                        'En Ruines' => 'En Ruines',
+                    );
+                    $atrib = array('id' => 'input_conservacio', 'class' => 'form-control');
+                    echo form_dropdown('input_conservacio', $options, 1, $atrib);
                     ?>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
+                    <label for="input_m2_exterior">Preu:</label>
+                    <input type="number" class="form-control" id="input_preu" name="input_preu">
+                </div>
+                <div class="form-group">
+                    <p>Accepta Comanda:</p>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_accept_comentari" value="1">Si
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="input_accept_comentari" value="0">No
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="">
                         <input class="btn btn-success" value="Guardar Canvis" type="submit">
                         <span></span>
                         <input class="btn btn-default" value="Borrar" type="reset">

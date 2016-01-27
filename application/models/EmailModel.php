@@ -33,7 +33,7 @@ class emailModel extends CI_Model
         $this->email->to($mail);
         $this->email->subject('Benvingt/a a InfoImmobles.com');
         $this->email->message('<h2>Email per activar compte a InfoImmobles.com</h2><hr><br>
-        <br/><p>Per activar el seu compte fes click en el seguent enllaç <a href="http://localhost/Practica_Codeigniter/index.php/contRegistre/compte_activat?mail='.$mail.'&codi=' . $codi . '">Activar Compte InfoImmobles.com</a></p>
+        <br/><p>Per activar el seu compte fes click en el seguent enllaç <a href="http://localhost/practica-codeig/index.php/contRegistre/compte_activat?mail='.$mail.'&codi=' . $codi . '">Activar Compte InfoImmobles.com</a></p>
         ');
         $this->email->send();
         //con esto podemos ver el resultado

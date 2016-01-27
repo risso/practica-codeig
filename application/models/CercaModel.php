@@ -28,7 +28,6 @@ class CercaModel extends CI_Model
         $valors["accepta_com"] = $data[13];// no estic segura d'aquest ja q és bolean
         // uttim seria la data q es timestamp
 
-
         $this->db->insert('cerques', $valors); // -> els camps dels valor s'han de dir igual q els camps de la base de dades
 
     }
