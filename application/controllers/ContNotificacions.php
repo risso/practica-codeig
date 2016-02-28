@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ContCerques extends CI_Controller
+class ContNotificacions extends CI_Controller
 {
     function __construct()
     {
@@ -28,7 +28,7 @@ class ContCerques extends CI_Controller
             $data = array();
 
             //agafar dades bd per mostrar totes les cerques de l'usuari loginat
-            $data['cerques'] = $this->obternir_cerques_x_usuari();
+            $data['notificacions'] = $this->obternir_notificacions_x_usuari();
 
             /*foreach ($data['cerques2'] as $pos_array) {
                 foreach ($pos_array as $key => $val) {
@@ -38,20 +38,20 @@ class ContCerques extends CI_Controller
             }*/
 
             $this->load->view('templates/header2', $data);
-            $this->load->view('pages/view_cerques');
+            $this->load->view('pages/view_notificacions');
             $this->load->view('templates/footer');
 
         } else {
-            $this->session->set_userdata('ultima_pagina', 'contCerques/index');
+            $this->session->set_userdata('ultima_pagina', 'ContNotificacions/index');
 
             //echo $this->session->userdata('ultima_pagina');
             redirect('contIndex/index');
         }
     }
 
-    public function obternir_cerques_x_usuari()
+    public function obternir_notificacions_x_usuari()
     {
-        return $this->CercaModel->getCerques($this->session->userdata('mail'));
+        return $this->NotificacionsModel->getNotificacions($this->session->userdata('mail'));
     }
 
 
@@ -84,7 +84,7 @@ class ContCerques extends CI_Controller
 
             $provincies = $this->obtenir_Provincies();
 
-            $atrib = array('id' => 'input_prov', 'class' => 'form-control', 'onchange' => 'obtenir_codi_prov()');
+            $atrib = array('id' => 'input_prov', 'class' => 'form-control', 'onchange' => 'obtenir_codi_prov2()');
             $data["dropdown_prov"] = form_dropdown('input_prov', $provincies, $prov_selec, $atrib);
 
 
@@ -95,10 +95,10 @@ class ContCerques extends CI_Controller
             $atrib2 = array('id' => 'input_pob', 'class' => 'form-control');
             $data["dropdown_pob"] = form_dropdown('input_pob', $poblacions, '1', $atrib2);
 
-            $data['cerques'] = $this->obternir_cerques_x_usuari();
+            $data['notificacions'] = $this->obternir_notificacions_x_usuari();
 
             $this->load->view('templates/header2', $data);
-            $this->load->view('pages/view_cerques');
+            $this->load->view('pages/view_notificacions');
             $this->load->view('templates/footer');
 
 
@@ -111,7 +111,7 @@ class ContCerques extends CI_Controller
     public function obtenir_Provincies()
     {
 
-        $res_prov = $this->CercaModel->get_Provincies();
+        $res_prov = $this->NotificacionsModel->get_Provincies();
 
         //var_dump($res_prov);
 
@@ -138,7 +138,7 @@ class ContCerques extends CI_Controller
     public function obtenir_PoblacionsSegonsProvincia($prov)
     {
 
-        $res_poblacions = $this->CercaModel->get_PoblacionsByProv($prov);
+        $res_poblacions = $this->NotificacionsModel->get_PoblacionsByProv($prov);
 
         //var_dump($res_prov);
 
@@ -164,7 +164,7 @@ class ContCerques extends CI_Controller
     }
 
 
-    public function afegir_cerca()
+    public function afegir_notificacio()
     {
 
         if ($this->usuariEnSessio()) {
@@ -186,13 +186,12 @@ class ContCerques extends CI_Controller
             $this->form_validation->set_rules('input_radio_orientacio', 'Aqui No importa', 'trim|required');
             $this->form_validation->set_rules('input_conservacio', 'Aqui No importa', 'trim|required');
             $this->form_validation->set_rules('input_preu', 'Aqui No importa', 'trim|required');
-            $this->form_validation->set_rules('input_accept_comentari', 'Aqui No importa', 'trim|required');
 
 
             if ($this->form_validation->run() == FALSE) { // si algun camp es erroni torna al formulari (de registre), omplint els camps
 
                 //error = 1 significa q no ha validat el formulari
-                redirect('ContCerques/mostrar_form?error=1');
+                redirect('ContNotificacions/mostrar_form?error=1');
 
             } else {
                 $data[0] = $this->session->userdata('mail'); //agafem valor mail de la session
@@ -208,11 +207,12 @@ class ContCerques extends CI_Controller
                 $data[10] = $this->input->post("input_radio_orientacio");
                 $data[11] = $this->input->post("input_conservacio");
                 $data[12] = $this->input->post("input_preu");
-                $data[13] = $this->input->post("input_accept_comentari");
 
-                $res = $this->CercaModel->afegir_cerca_bd($data);
+                // $res = $this->NotificacionsModel->afegir_notificacio_bd($data);
 
-                redirect('ContCerques/index');
+                $this->buscar_coincidencies($data);
+
+                redirect('ContNotificacions/index');
 
                 /*
                  * els dos redirects semblen redundatns, perque tant com si entre en la primera
@@ -226,10 +226,82 @@ class ContCerques extends CI_Controller
 
 
         } else {
-            redirect('ContCerques/index');
+            redirect('ContNotificacions/index');
 
         }
 
+    }
+
+
+    public function buscar_coincidencies($data)
+    {
+
+        var_dump($data);
+        echo "<br/>";
+        echo "<br/>";
+
+
+        //obtenir totes les cerques de tots els usuaris i fer un bucle
+        $TotesLesCerques = $this->CercaModel->getTotesLesCerques();
+
+        //m2_exterior no compta
+
+        foreach ($TotesLesCerques as $array_pos) {
+            //per cada registre de cerca
+            $punts = 0;
+            foreach ($array_pos as $key => $val) {
+                echo($key . " = " . $val . "<br/>");
+                switch($key){
+                    case 'type_im';
+                        if($val == $data[1]) $punts++;
+                        break;
+                    case 'provincia';
+                        if($val == $data[2]) $punts++;
+                        break;
+                    case 'poblacio';
+                        if($val == $data[3]) $punts++;
+                        break;
+                    case 'operacio';
+                        if($val == $data[4]) $punts++;
+                        break;
+                    case 'm2';
+                    if($val == $data[5]) $punts++;
+                    break;
+                    case 'num_espais';
+                        if($val == $data[6]) $punts++;
+                        break;
+                    case 'num_banys';
+                        if($val == $data[7]) $punts++;
+                        break;
+                    case 'planta';
+                        if($val == $data[9]) $punts++;
+                        break;
+                    case 'orientacio';
+                        if($val == $data[10]) $punts++;
+                        break;
+                    case 'estat_conservacio';
+                        if($val == $data[11]) $punts++;
+                        break;
+                    case 'preu';
+                        if($val == $data[12]) $punts++;
+                        break;
+                    case 'ref';
+                        $data[13] = $val;
+                        break;
+                }
+
+            }
+            echo "Punts: ". $punts."<br/>";
+            if($punts=11){
+                //indica totes les coincidencies i enviar email
+                $this->EmailModel->enviar_email_notificacio($data[0],$data);
+                //guardar a la bd;
+
+
+            }
+        }
+
+            exit;
     }
 
 

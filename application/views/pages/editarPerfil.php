@@ -10,24 +10,24 @@
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <?php $src = 'http://localhost/Practica_Codeigniter/application/avatars/' . $this->session->userdata('mail') . '/' . $this->session->userdata('avatar'); ?>
+                <?php $src = 'http://localhost/practica-codeig/application/avatars/' . $this->session->userdata('mail') . '/' . $this->session->userdata('avatar'); ?>
                 <img src="<?php echo $src ?>" class="avatar img-circle img_avatar" alt="avatar">
                 <!-- Aqui fa el formulari per canviar la imatge -->
                 <?php echo form_open_multipart('contUpload/do_upload'); ?>
-                <input type="file" name="userfile" size="20" /><br/>
+                <input type="file" name="userfile" size="20"/><br/>
                 <input class="btn btn-primary" value="Canviar Imatge" type="submit">
-                <?=form_close()?>
+                <?= form_close() ?>
             </div>
         </div>
 
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
-            <?php if( isset($canvis_perfil_correcte) ){?>
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-hand-peace-o"></i>
-                Canvis Guardats Correctament.
-            </div>
+            <?php if (isset($canvis_perfil_correcte)) { ?>
+                <div class="alert alert-info alert-dismissable">
+                    <a class="panel-close close" data-dismiss="alert">×</a>
+                    <i class="fa fa-hand-peace-o"></i>
+                    Canvis Guardats Correctament.
+                </div>
             <?php } ?>
             <!-- fi zona alerts -->
             <?php $attributes = array('id' => 'perfil-formulari', 'role' => 'form', 'class' => 'form-horizontal');
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <?php echo form_error('inputNick'); ?>
                 <input type="text" name="inputNick" id="inputNick" tabindex="1" class="form-control"
-                       placeholder="Username" value="<?php echo set_value('inputNick');?>">
+                       placeholder="Username" value="<?php echo set_value('inputNick'); ?>">
             </div>
             <div class="form-group">
                 <input type="email" name="inputEmail" id="inputEmail" tabindex="1" class="form-control"

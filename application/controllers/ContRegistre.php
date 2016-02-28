@@ -133,7 +133,7 @@ class ContRegistre extends CI_Controller
                 redirect($this->session->userdata('ultima_pagina'));
 
             } else {
-                $this->load->view('templates/header', $data);
+                $this->load->view('templates/header2', $data);
                 $this->load->view('pages/view_cerques');
                 $this->load->view('templates/footer');
             }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CercaModel extends CI_Model
+class NotificacionsModel extends CI_Model
 {
 
     public function __construct()
@@ -35,7 +35,7 @@ class CercaModel extends CI_Model
     }
 
 
-    public function afegir_cerca_bd($data)
+    public function afegir_notificacio_bd($data)
     {
         $valors = array();
         $valors["id_user"] = $data[0];
@@ -51,32 +51,17 @@ class CercaModel extends CI_Model
         $valors["orientacio"] = $data[10];
         $valors["estat_conservacio"] = $data[11];
         $valors["preu"] = $data[12];
-        $valors["accepta_com"] = $data[13];// no estic segura d'aquest ja q és bolean
         // uttim seria la data q es timestamp
 
-        $this->db->insert('cerques', $valors); // -> els camps dels valor s'han de dir igual q els camps de la base de dades
+        $this->db->insert('notificacions', $valors); // -> els camps dels valor s'han de dir igual q els camps de la base de dades
 
     }
 
-    public function getCerques($mail_usu)
+    public function getNotificacions($mail_usu)
     {
         $values = array();
         $values["id_user"] = $mail_usu;
-        $query = $this->db->get_where('cerques', $values);
-
-        $a = array();
-        foreach ($query->result_array() as $key => $val) {
-            $a[$key] = $val;
-
-        }
-        return $a;
-
-    }
-
-    //funcio per obtenir totes les cerques de tots els usuaris, per saber totes les coincidencies amb les cerques de filtres,
-    public function getTotesLesCerques()
-    {
-        $query = $this->db->get('cerques');
+        $query = $this->db->get_where('notificacions', $values);
 
         $a = array();
         foreach ($query->result_array() as $key => $val) {

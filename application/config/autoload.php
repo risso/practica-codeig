@@ -128,4 +128,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('LoginRegistreModel','SessioModel','CercaModel');
+$autoload['model'] = array('LoginRegistreModel','SessioModel','CercaModel','NotificacionsModel','EmailModel');

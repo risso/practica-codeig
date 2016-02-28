@@ -1,18 +1,14 @@
-<!-- PAGINA CERQUES  -->
-<div class="container" id="cont_cerques_width_auto">
+<!-- PAGINA NOTIFICACIONS  -->
+<!-- PAGINA NOTIFICACIONS  -->
+<!-- PAGINA NOTIFICACIONS  -->
+<div class="container" id="cont_notificacions_width_auto">
 
     <!--<?php //echo anchor('contRegistre/enviar_emailami', 'Enviar-me missatge'); ?>-->
 
-    <div class="row" id="cont_div_cerques">
+    <div class="row" id="cont_div_notificacins">
         <!-- edit form column -->
         <div class="col-md-4 col-md-offset-1">
             <!-- zona alerts -->
-            <?php if (isset($canvis_perfil_correcte)) { ?>
-                <div class="alert alert-info">
-                    <i class="fa fa-hand-peace-o"></i>
-                    Canvis Guardats Correctament.
-                </div>
-            <?php } ?>
             <?php if (isset($form_incomplert) && $form_incomplert == true) { ?>
                 <div class="alert alert-danger" role="alert">
                     <strong>ERROR!</strong>&nbsp; &nbsp; Falten Camps per Omplir.
@@ -20,22 +16,21 @@
             <?php } ?>
 
             <!-- fi zona alerts -->
-            <!-- Boto per mostrar formulari per afegir cerca -->
+            <!-- Boto per mostrar formulari per afegir NOTIFICACIO -->
 
-
-            <a href="<?php echo(site_url("ContCerques/mostrar_form/")); ?>" class="btn btn-primary"
+            <a href="<?php echo(site_url("ContNotificacions/mostrar_form/")); ?>" class="btn btn-primary"
                 <?php if (isset($mostrar_form)) {
                     echo 'disabled';
                 } ?>
-            >Afegir Cerca</a>
+            >Afegir Notificació</a>
 
             <?php if (isset($mostrar_form) && $mostrar_form == true) { ?>
 
                 <!-- formulari de afegir cerca -->
-                <?php $attributes = array('id' => 'cerca-formulari', 'role' => 'form', 'class' => 'form-horizontal');
-                echo form_open_multipart('contCerques/afegir_cerca', $attributes);
+                <?php $attributes = array('id' => 'notificacio-formulari', 'role' => 'form', 'class' => 'form-horizontal');
+                echo form_open_multipart('ContNotificacions/afegir_notificacio', $attributes);
                 ?>
-                <h1 id="titol_cerca">Nova Cerca:</h1>
+                <h1 id="titol_notificacio">Nova Notificacio:</h1>
                 <hr>
                 <div class="form-group">
                     <label for="input_imm">Tipus Immoble:</label>
@@ -44,7 +39,6 @@
                         'Casa' => 'Casa',
                         'Local' => 'Local',
                     );
-                    //$atributs = 'id="shirts" onChange="some_function();"';
                     $atrib = array('id' => 'input_imm', 'class' => 'form-control');
                     echo form_dropdown('input_imm', $options, 'Pis', $atrib);
                     ?>
@@ -53,8 +47,8 @@
                     <label for="input_prov">Provincia:</label>
                     <?php echo $dropdown_prov; ?>
                     <!-- El seguent link es ocult, canvia el atribut href quan és canvia de provincia i s'envia a l'hora -->
-                    <a hidden id="boto_enviar_prov"
-                       href='<?php echo site_url('ContCerques/mostrar_form') . "?prov=2" ?>'>Mostrar Poblacions</a>
+                    <a hidden id="boto_enviar_prov2"
+                       href='<?php echo site_url('ContNotificacions/mostrar_form') . "?prov=2" ?>'>Mostrar Poblacions</a>
                     <?php ?>
                 </div>
                 <div class="form-group">
@@ -134,20 +128,11 @@
                     <input type="number" class="form-control" id="input_preu" name="input_preu">
                 </div>
                 <div class="form-group">
-                    <p>Acceptar Comentaris:</p>
-                    <label class="radio-inline">
-                        <input type="radio" name="input_accept_comentari" value="1">Si
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="input_accept_comentari" value="0">No
-                    </label>
-                </div>
-                <div class="form-group">
                     <div class="">
                         <input class="btn btn-success" value="Guardar Canvis" type="submit">
                         <span></span>
                         <input class="btn btn-default" value="Borrar" type="reset">
-                        <a href="<?php echo(site_url("ContCerques/index/")); ?>" class="btn btn-primary">
+                        <a href="<?php echo(site_url("ContNotificacions/index/")); ?>" class="btn btn-primary">
                             Cancelar</a>
                     </div>
                 </div>
@@ -155,10 +140,10 @@
             <?php } ?>
         </div>
         <!-- FI formulari de afegir cerca -->
-        <div class="col-xs-12" id="taula_cerques">
+        <div class="col-xs-12" id="taula_notificacions">
 
             <!-- Mostrar taula amb totes les cerques del usuari -->
-            <h2>Cerques Realitzades</h2>
+            <h2>Filtres Creats  - Immobles Disponibles -</h2>
             <table class="table table-bordered">
                 <thead class="thead-inverse">
 
@@ -187,36 +172,25 @@
                     <th>Orient.</th>
                     <th>Conservacio</th>
                     <th>Preu</th>
-                    <th>Comment.</th>
                     <th>Data</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
 
                 <?php
-                foreach ($cerques as $pos) {
+                foreach ($notificacions as $pos) {
                     echo "<tr>";
-                    $accepta_comentari;
                     foreach ($pos as $key => $value) {
                         switch ($key) {
                             case 'id_user';
                                 //no fer res, per no mostrar el id_user
-                                break;
-                            case  'accepta_com';
-                                $accepta_comentari = $value;
-                                if ($value) {
-                                    echo "<td>SI</td>";
-                                } else {
-                                    echo "<td>NO</td>";
-                                }
                                 break;
                             default:
                                 echo "<td>" . $value . "</td>";
                                 break;
                         }
                     }
-                    if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContCerques/mostrar_form/') . ">Veure Comentaris</a></td>";
+                    //if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContCerques/mostrar_form/') . ">Comentar</a></td>";
                     echo "</tr>";
 
 
@@ -226,8 +200,16 @@
                 </tbody>
             </table>
         </div>
+        <!-- FI Mostrar Taula Filtres Creats -->
 
-        <!-- FI Mostrar Taula -->
+        <div class="col-xs-12" id="taula_cerques">
+
+            <!-- Mostrar taula amb totes les notificacions de l'usuari -->
+            <h2>Notificacions:</h2>
+        </div>
+        <!-- FI Mostrar Taula Notificacions -->
+
+
     </div>
     <!-- /row -->
 </div>

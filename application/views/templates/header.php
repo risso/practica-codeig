@@ -46,7 +46,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="http://localhost/practica-codeig/application/css/estil.css"/>
 </head>
-<body id="<?php if(isset($index_si)){echo "body_img";}?>" >
+<body id="body_img">
 <nav class="navbar navbar-inverse  navbar-fixed-top " role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -59,50 +59,7 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<?php echo site_url("contIndex"); ?>">Home</a></li>
-                <?php if($this->session->has_userdata('nick')){ ?>
-                <li><a href="<?php echo site_url("contCerques/index"); ?>">Cerques</a></li>
-                <?php } ?>
-                <li><a href="#">Notificacions</a></li>
             </ul>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <!-- User Account: style can be found in dropdown.less -->
-            <?php if ($this->session->has_userdata('nick') == true) { ?>
-                <li class="">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <?php
-                        $nom = $this->session->userdata('nick');
-                        if ($this->session->userdata('avatar') == "") {
-                            //$src = './application/avatars/user_default.png';
-                            $src = 'http://localhost/practica-codeig/application/avatars/user_default.png';
-                        } else {
-                            $src = 'http://localhost/practica-codeig/application/avatars/' . $this->session->userdata('mail') . '/' . $this->session->userdata('avatar');
-                        } ?>
-                        <img src="<?php echo($src); ?>" class="user-image" alt="Image">
-                        <span class="hidden-xs"><?php echo($nom); ?></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <!-- User image -->
-                        <li class="user-header">
-                            <img src="<?php echo($src); ?>" class="img-circle profile-image img_avatar" alt="Image">
-                            <p><?php echo($this->session->userdata('mail')); ?></p>
-                        </li>
-                        <!-- Menu Footer-->
-                        <li class="user-footer">
-                            <a href="<?php echo (site_url("ContPerfil/index"));?>" class="btn btn-default btn-flat">Modificar Perfil</a>
-
-                        </li>
-                    </ul>
-                </li>
-            <?php } ?>
-            <!-- -->
-            <!-- -->
-            <!-- -->
-            <?php if ($this->session->has_userdata('nick') == true) { ?>
-                <li><a href="<?php echo site_url("contRegistre/eliminar_sessio"); ?>"><span
-                            class="glyphicon glyphicon-log-in"></span> Sortir</a>
-                </li>
-            <?php } ?>
-        </ul>
     </div>
 </nav>

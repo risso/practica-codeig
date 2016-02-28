@@ -12,6 +12,42 @@ class ContLogin extends CI_Controller {
 		$this->load->view('templates/footer');
 		
 	}
+
+	public function loginarse()
+	{
+		$data = array();
+
+		$data[0] = $this->input->post("inputEmail");
+		$data[1] = $this->input->post("inputPassword");
+
+		//echo "Valor de email:".$data[0];
+		//echo " Valor de passwd:".$data[1];
+
+		$data["usuari"] = $this->LoginRegistreModel->fer_login($data);
+
+		if ($data["usuari"] != null) {
+			// login correcte, carregar dades en sessió i anar a area personal o a la ultima pag visitada si existeix
+			$this->SessioModel->carregar_sessio($data["usuari"]);
+
+			if ($this->session->has_userdata('ultima_pagina')) {
+
+				redirect($this->session->userdata('ultima_pagina'));
+
+			} else {
+				$this->load->view('templates/header2', $data);
+				$this->load->view('pages/view_cerques');
+				$this->load->view('templates/footer');
+			}
+		} else {
+			//tornar al index avisant q les dades són Incorrectes
+			$data["login_incorrecte"] = true;
+			$this->load->view('templates/header', $data);
+			$this->load->view('pages/index');
+			$this->load->view('templates/footer');
+		}
+	}
+
+
 	
 	public function loginUsuari(){
 		

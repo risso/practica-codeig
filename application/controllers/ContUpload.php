@@ -25,7 +25,7 @@ class ContUpload extends CI_Controller
 		if (!$this->upload->do_upload()) {
             $error = array('error' => $this->upload->display_errors());
 
-            $this->load->view('templates/header', $error);
+            $this->load->view('templates/header2', $error);
             $this->load->view('pages/editarPerfil');
             $this->load->view('templates/footer');
 
@@ -38,7 +38,7 @@ class ContUpload extends CI_Controller
             $res2 = $this->SessioModel->canviar_avatar_sessio($src_img);
 
             $data["canvis_perfil_correcte"]=true;
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header2', $data);
             $this->load->view('pages/editarPerfil');
             $this->load->view('templates/footer');
         }

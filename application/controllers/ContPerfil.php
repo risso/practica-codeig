@@ -22,7 +22,7 @@ class ContPerfil extends CI_Controller
         //comprovar si esta en sessio si no no deixar anar, guardar pagina anterior i anar a login
         if ($this->usuariEnSessio()) {
             $data = array();
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header2', $data);
             $this->load->view('pages/editarPerfil');
             $this->load->view('templates/footer');
 
@@ -61,7 +61,7 @@ class ContPerfil extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) { // si algun camp es erroni torna al formulari (de registre), omplint els camps
 
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header2', $data);
             $this->load->view('pages/editarPerfil');
             $this->load->view('templates/footer');
 
@@ -77,7 +77,7 @@ class ContPerfil extends CI_Controller
             $this->SessioModel->canviar_nick_sessio($data[0]);
 
             $data["canvis_perfil_correcte"] = true;
-            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header2', $data);
             $this->load->view('pages/editarPerfil');
             $this->load->view('templates/footer');
 
