@@ -9,6 +9,11 @@ class NotificacionsModel extends CI_Model
         $this->load->database();
     }
 
+    function insert_id() {
+       return $this->db->insert_id();
+    }
+
+
     public function get_Provincies()
     {
         $query = $this->db->get('provincias');
@@ -53,7 +58,15 @@ class NotificacionsModel extends CI_Model
         $valors["preu"] = $data[12];
         // uttim seria la data q es timestamp
 
-        $this->db->insert('notificacions', $valors); // -> els camps dels valor s'han de dir igual q els camps de la base de dades
+        if($this->db->insert('notificacions', $valors)){
+
+            return $this->db->insert_id();
+        }else{
+
+            return false;
+        }
+
+
 
     }
 

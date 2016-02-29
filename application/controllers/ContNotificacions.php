@@ -36,6 +36,9 @@ class ContNotificacions extends CI_Controller
                 }
 
             }*/
+            //agafar totes les coincidencies de l'usuari per mostrar-les
+            $data['coincidencies'] = $this->CoincidenciesModel->getCoincidenciesByUser($this->session->userdata('mail'));
+
 
             $this->load->view('templates/header2', $data);
             $this->load->view('pages/view_notificacions');
@@ -208,9 +211,20 @@ class ContNotificacions extends CI_Controller
                 $data[11] = $this->input->post("input_conservacio");
                 $data[12] = $this->input->post("input_preu");
 
-                // $res = $this->NotificacionsModel->afegir_notificacio_bd($data);
+                //retorna el ultim id (ref_notificacio) acabat de introduir
+                $ref_noti = $this->NotificacionsModel->afegir_notificacio_bd($data);
 
-                $this->buscar_coincidencies($data);
+                //obtener el utimo id (referencia de notificacion) insertada para guardar-la en coincidencias en el caso q haiga
+
+                /*if($ref_noti==false){
+                    echo "Id Notificacion es NULL " . $ref_noti . "<br/>";
+
+                }else {
+                    echo "Id Referencia Ultima Noti: " . $ref_noti . "<br/>";
+                }*/
+
+
+                $this->buscar_coincidencies($ref_noti,$data);
 
                 redirect('ContNotificacions/index');
 
@@ -233,12 +247,12 @@ class ContNotificacions extends CI_Controller
     }
 
 
-    public function buscar_coincidencies($data)
+    public function buscar_coincidencies($ref_noti,$data)
     {
 
-        var_dump($data);
+        /*var_dump($data);
         echo "<br/>";
-        echo "<br/>";
+        echo "<br/>";*/
 
 
         //obtenir totes les cerques de tots els usuaris i fer un bucle
@@ -288,20 +302,39 @@ class ContNotificacions extends CI_Controller
                     case 'ref';
                         $data[13] = $val;
                         break;
+                    case 'id_user';
+                        $data[14] = $val; //usuari de la cerca q coincideix
+                        break;
+                    case 'accepta_com';
+                        $data[15] = $val; //usuari de la cerca q coincideix
+                        break;
                 }
 
             }
-            echo "Punts: ". $punts."<br/>";
-            if($punts=11){
+            //echo "Punts: ". $punts."<br/>";
+            //en total hi poden haver 11 punts
+            if($punts=7){
                 //indica totes les coincidencies i enviar email
                 $this->EmailModel->enviar_email_notificacio($data[0],$data);
                 //guardar a la bd;
+                $camps_guardar = array();
+                $camps_guardar['ref_cerca'] = $data[13];
+                $camps_guardar['ref_noti'] = $ref_noti;
+                $camps_guardar['user_cerca'] = $data[14];
+                $camps_guardar['user_noti'] = $data[0];
+                $camps_guardar["type_im"] = $data[1];
+                $camps_guardar["provincia"] = $data[2];
+                $camps_guardar["poblacio"] = $data[3];
+                $camps_guardar["operacio"] = $data[4];
+                $camps_guardar["m2"] = $data[5];
+                $camps_guardar["accepta_comentari"] = $data[15];
 
+                $this->CoincidenciesModel->afegir_coincidencia_bd($camps_guardar);
 
             }
         }
 
-            exit;
+
     }
 
 

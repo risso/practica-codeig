@@ -204,8 +204,68 @@
 
         <div class="col-xs-12" id="taula_cerques">
 
-            <!-- Mostrar taula amb totes les notificacions de l'usuari -->
+            <!-- Mostrar taula amb totes les notificacions de l'usuari (taula coincidencies) -->
             <h2>Notificacions:</h2>
+            <table class="table table-bordered">
+                <thead class="thead-inverse">
+
+                <?php
+                //Bucle només per mostrar titols de la taula igual bd
+
+                /*                echo "<tr>";
+                                foreach ($cerques[0] as $key => $val) {
+                                    if ($key != 'id_user') {
+                                        echo "<th>" . $key . "</th>";
+                                    }
+                                }
+                                echo "</tr>";
+                                */ ?>
+                <tr>
+                    <th>#Ref.</th>
+                    <th>Ref Cerca</th>
+                    <th>Ref Filtre</th>
+                    <th>Usuari Cerca</th>
+                    <th>Immoble</th>
+                    <th>Provincia</th>
+                    <th>Poblacio</th>
+                    <th>Operacio</th>
+                    <th>m2</th>
+                    <th>És pot Comentar</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php
+                foreach ($coincidencies as $pos) {
+                    $accepta_comentari;
+                    $ref_cerca;
+                    echo "<tr>";
+                    foreach ($pos as $key => $value) {
+                        switch ($key) {
+                            case 'user_noti';
+                                //no fer res, per no mostrar el id_user
+                                break;
+                            case 'ref_cerca';
+                                $ref_cerca = $value;
+                                echo "<td>" . $value . "</td>";
+                                break;
+                            case  'accepta_comentari';
+                                $accepta_comentari = $value;
+                                break;
+                            default:
+                                echo "<td>" . $value . "</td>";
+                                break;
+                        }
+                    }
+                    if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContComentaris/index')."?ref=".$ref_cerca. ">Comentar</a></td>";
+                    echo "</tr>";
+
+
+                }
+
+                ?>
+                </tbody>
+            </table>
         </div>
         <!-- FI Mostrar Taula Notificacions -->
 

@@ -198,8 +198,13 @@
                 foreach ($cerques as $pos) {
                     echo "<tr>";
                     $accepta_comentari;
+                    $ref;
                     foreach ($pos as $key => $value) {
                         switch ($key) {
+                            case 'ref';
+                                $ref = $value;
+                                echo "<td>" . $value . "</td>";
+                                break;
                             case 'id_user';
                                 //no fer res, per no mostrar el id_user
                                 break;
@@ -216,7 +221,7 @@
                                 break;
                         }
                     }
-                    if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContCerques/mostrar_form/') . ">Veure Comentaris</a></td>";
+                    if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContComentarisCerques/index/')."?ref=".$ref . ">Veure Comentaris</a></td>";
                     echo "</tr>";
 
 

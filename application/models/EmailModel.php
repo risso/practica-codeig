@@ -69,19 +69,19 @@ class emailModel extends CI_Model
         $this->email->subject('Laura Pérez: Notificacio InfoImmobles.com');
         $this->email->message('<h2>Nova Notificacio de Cerca:</h2><hr><br>
         <br/>
-        <p>Li informem de que s\'han trobat noves notificacions pels seus filtres:</p>
-        <p>Referència:'.$data[13].'</p>
-        <p>Tipus Immoble:'.$data[1].'</p>
-        <p>Provincia:'.$data[2].'</p>
-        <p>Poblacio:'.$data[3].'</p>
-        <p>Opereacio:'.$data[4].'</p>
-        <p>Metres Quadrats:'.$data[5].'</p>
-        <p>Numero d\'Espais:'.$data[6].'</p>
-        <p>Numero de Banys:'.$data[7].'</p>
-        <p>Planta:'.$data[9].'</p>
-        <p>Orientacio:'.$data[10].'</p>
-        <p>Conservacio:'.$data[11].'</p>
-        <p>Preu:'.$data[12].'</p>
+        <h3>Li informem que s\'han trobat noves notificacions pels seus filtres:</h3>
+        <p>Referència Cerca:'.$data[13].'</p>
+        <p>Tipus Immoble: '.$data[1].'</p>
+        <p>Provincia: '.$data[2].'</p>
+        <p>Poblacio: '.$data[3].'</p>
+        <p>Opereacio: '.$data[4].'</p>
+        <p>Metres Quadrats: '.$data[5].'</p>
+        <p>Numero d\'Espais: '.$data[6].'</p>
+        <p>Numero de Banys: '.$data[7].'</p>
+        <p>Planta '.$data[9].'</p>
+        <p>Orientacio: '.$data[10].'</p>
+        <p>Conservacio: '.$data[11].'</p>
+        <p>Preu: '.$data[12].'</p>
         <a href="http://localhost/practica-codeig/index.php/contNotificacions/">Visualitzar Notificacions</a></p>
         ');
         $this->email->send();

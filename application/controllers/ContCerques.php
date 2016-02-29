@@ -188,6 +188,9 @@ class ContCerques extends CI_Controller
             $this->form_validation->set_rules('input_preu', 'Aqui No importa', 'trim|required');
             $this->form_validation->set_rules('input_accept_comentari', 'Aqui No importa', 'trim|required');
 
+            //$imm = $this->input->post("input_imm");
+            //echo "Valor de immoble: ".$imm ."<br/>";
+            //exit;
 
             if ($this->form_validation->run() == FALSE) { // si algun camp es erroni torna al formulari (de registre), omplint els camps
 
