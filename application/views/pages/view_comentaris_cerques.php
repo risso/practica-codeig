@@ -25,8 +25,8 @@
 
                 <!-- Mostrar taula amb totes les cerques del usuari -->
                 <h2>Comentaris de la Cerca</h2>
-                <table class="table table-bordered">
-                    <thead class="thead-inverse">
+                <table id="taula_comentaris" class="">
+                    <thead class="">
 
                     <?php
                     //Bucle només per mostrar titols de la taula igual bd
@@ -40,22 +40,11 @@
                                     echo "</tr>";
                                     */ ?>
                     <tr>
-                        <th>#Ref.</th>
-                        <th>Immoble</th>
-                        <th>Provincia</th>
-                        <th>Poblacio</th>
-                        <th>Operacio</th>
-                        <th>m2</th>
-                        <th>Espais</th>
-                        <th>Banys</th>
-                        <th>m2 Ext.</th>
-                        <th>Panta</th>
-                        <th>Orient.</th>
-                        <th>Conservacio</th>
-                        <th>Preu</th>
-                        <th>Comment.</th>
+                        <th>#Id Comentari</th>
+                        <th>Num. Cerca</th>
+                        <th>Usuari</th>
+                        <th id="titol_comentari">Comentari</th>
                         <th>Data</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,31 +52,11 @@
                     <?php
                     foreach ($comentaris as $pos) {
                         echo "<tr>";
-                        $accepta_comentari;
                         foreach ($pos as $key => $value) {
-                            switch ($key) {
-                                case 'id_user';
-                                    //no fer res, per no mostrar el id_user
-                                    break;
-                                case  'accepta_com';
-                                    $accepta_comentari = $value;
-                                    if ($value) {
-                                        echo "<td>SI</td>";
-                                    } else {
-                                        echo "<td>NO</td>";
-                                    }
-                                    break;
-                                default:
-                                    echo "<td>" . $value . "</td>";
-                                    break;
-                            }
+                            echo "<td>" . $value . "</td>";
                         }
-                        if ($accepta_comentari) echo "<td><a class='btn btn-warning' href=" . site_url('ContCerques/mostrar_form/') . ">Veure Comentaris</a></td>";
                         echo "</tr>";
-
-
                     }
-
                     ?>
                     </tbody>
                 </table>

@@ -32,12 +32,7 @@ class ContComentarisCerques extends CI_Controller
                     echo $key . " = " . $val . "<br/>";
                 }
             }*/
-
-
-
             $ref = $this->input->get('ref');
-
-
 
             if ($ref == null) {
                 //echo "Referencia es NULL ";

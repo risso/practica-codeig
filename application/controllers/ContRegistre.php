@@ -133,9 +133,11 @@ class ContRegistre extends CI_Controller
                 redirect($this->session->userdata('ultima_pagina'));
 
             } else {
-                $this->load->view('templates/header2', $data);
+               /* $this->load->view('templates/header2', $data);
                 $this->load->view('pages/view_cerques');
-                $this->load->view('templates/footer');
+                $this->load->view('templates/footer');*/
+                redirect('ContCerques/index');
+
             }
         } else {
             //tornar al index avisant q les dades són Incorrectes

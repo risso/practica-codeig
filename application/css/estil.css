@@ -228,3 +228,35 @@ table td * {
   margin: 0px auto;
   min-width: 1400px;
 }
+#taula_notificacions {
+  margin-top: 20px;
+}
+#taula_notificacions h2 {
+  font-size: 25px;
+  margin: 20px;
+}
+#cont_cerques_width_auto3 {
+  margin: 0px auto;
+}
+#taula_cerques3 {
+  margin-top: 20px;
+}
+#taula_cerques3 h2 {
+  font-size: 25px;
+  margin: 20px;
+}
+#taula_cerques3 * {
+  text-align: center;
+  padding: 12px;
+}
+#taula_cerques3 #taula_comentaris {
+  width: 900px;
+  min-height: 90px;
+  padding: 20px;
+}
+#taula_cerques3 #taula_comentaris tr {
+  background-color: #b3ffb3;
+}
+.thead-inverse #titol_comentari {
+  width: 200px;
+}
